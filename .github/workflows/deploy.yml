@@ -68,6 +68,10 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         with:
+          id: deploy-aws
           bucket: ${{ secrets.AWS_BUCKET }}
           dist-folder: ./dist
           # bucket-region: us-east-2
+      - name: Output info
+        run: |
+          echo "Live URL: ${{ steps.deploy-aws.outputs.website-url }}"
